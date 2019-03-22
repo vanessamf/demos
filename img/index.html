@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		/*图片缩放适应容器大小*/
+		.img-wrapper1{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.img-wrapper1>.img-content{
+			width:250px;
+			height:250px;
+			margin:5px;
+			border:1px solid #eee;
+		}
+		.img-wrapper1>.img-content img{
+			width:100%;
+			height:100%;
+		}
+		/*图片保持原比例，大图原比例缩小，不裁剪；小图原比例不放大*/
+		.img-wrapper2{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.img-wrapper2>.img-content{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width:250px;
+			height:250px;
+			margin:5px;
+			border:1px solid #eee;
+		}
+		.img-wrapper2>.img-content img{
+			width:auto;
+			height:auto;
+			max-width: 100%;
+    			max-height: 100%;
+		}
+		/*就宽度，等比缩放，超出隐藏*/
+		.img-wrapper3{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.img-wrapper3>.img-content{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width:250px;
+			height:250px;
+			margin:5px;
+			border:1px solid #eee;
+			overflow: hidden;
+		}
+		.img-wrapper3>.img-content img{
+			width:100%;
+		}
+		/*JS就短边，等比缩放，超出隐藏*/
+		.img-wrapper4{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.img-wrapper4>.img-content{
+			/*display: flex;
+			justify-content: center;
+			align-items: center;*/
+			width:250px;
+			height:250px;
+			margin:5px;
+			border:1px solid #eee;
+			overflow: hidden;
+		}
+		.img-wrapper4>.img-content img{
+			/*max-width: 100%!important;
+			height: auto!important;*/
+		}
+		/**/
+		.img-wrapper5{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.img-wrapper5>.img-content{
+			width:250px;
+			height:250px;
+			
+			margin:5px;
+		}
+		.img-wrapper5 .img1{
+			background: url(images/1366×768.jpg);
+			background-size:auto 100%;
+		}
+		.img-wrapper5 .img2{
+			background: url(images/457x600.jpeg);
+			background-size:100% auto;
+		}
+		.img-wrapper5 .img3{
+			background: url(images/200x150.jpeg);
+			background-size:auto 100%;
+			background-repeat:no-repeat;/*跟着图片*/
+		}
+		.img-wrapper5 .img4{
+			background: url(images/150x200.png);
+			background-size:100% auto;
+			
+			/*padding-top:80px;*/
+		}
+		
+	</style>
+	<body>
+		<!---->
+		<h3>图片缩放适应容器大小</h3>
+		<div id="" class="img-wrapper1">
+			<div class="img-content img1">
+				<img src="images/1366×768.jpg" alt="" />
+			</div>
+			<div class="img-content img2">
+				<img src="images/457x600.jpeg" alt="" />
+			</div>
+			<div class="img-content img3">
+				<img src="images/200x150.jpeg" alt="" />
+			</div>
+			<div class="img-content img4">
+				<img src="images/150x200.png" alt="" />
+			</div>
+		</div>
+		<!---->
+		<h3>图片保持原比例，大图原比例缩小，不裁剪；小图原比例不放大</h3>
+		<div id="" class="img-wrapper2">
+			<div class="img-content img1">
+				<img src="images/1366×768.jpg" alt="" />
+			</div>
+			<div class="img-content img2">
+				<img src="images/457x600.jpeg" alt="" />
+			</div>
+			<div class="img-content img3">
+				<img src="images/200x150.jpeg" alt="" />
+			</div>
+			<div class="img-content img4">
+				<img src="images/150x200.png" alt="" />
+			</div>
+		</div>
+		<!---->
+		<h3>就宽度，等比缩放，超出隐藏</h3>
+		<div id="" class="img-wrapper3">
+			<div class="img-content img1">
+				<img src="images/1366×768.jpg" alt="" />
+			</div>
+			<div class="img-content img2">
+				<img src="images/457x600.jpeg" alt="" />
+			</div>
+			<div class="img-content img3">
+				<img src="images/200x150.jpeg" alt="" />
+			</div>
+			<div class="img-content img4">
+				<img src="images/150x200.png" alt="" />
+			</div>
+		</div>
+		<!---->
+		<h3>JS就短边，等比缩放，超出隐藏</h3>
+		<div id="" class="img-wrapper4">
+			<div class="img-content img1">
+				<img src="images/1366×768.jpg" alt="" onload="proDownImage(this)" />
+			</div>
+			<div class="img-content img2">
+				<img src="images/457x600.jpeg" alt=""onload="proDownImage(this)"/>
+			</div>
+			<div class="img-content img3">
+				<img src="images/200x150.jpeg" alt=""onload="proDownImage(this)" />
+			</div>
+			<div class="img-content img4">
+				<img src="images/150x200.png" alt="" onload="proDownImage(this)"/>
+			</div>
+		</div>
+		<!---->
+		<h2>背景图片</h2>
+		<h3>就短边，等比缩放，超出隐藏</h3>
+		<div id="" class="img-wrapper5">
+			<div class="img-content img1">
+			</div>
+			<div class="img-content img2">
+			</div>
+			<div class="img-content img3">
+			</div>
+			<div class="img-content img4">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var conWidth=250;
+		var conHeight=250;
+		function proDownImage(ImgD){
+			var image=new Image();
+			image.src=ImgD.src;
+			if(image.width<image.height){
+				ImgD.width =conWidth;
+				//ImgD.height="auto"; 
+			}else{
+				//ImgD.width = "";
+				ImgD.height=conHeight; 
+			}
+		}
+	</script>
+</html>
