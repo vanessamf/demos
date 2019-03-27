@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>carousel</title>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index3.css" />
+	</head>
+
+	<body>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="images/351376.jpg" alt="" /></div>
+				<div class="swiper-slide"><img src="images/360617.jpg" alt="" /></div>
+				<div class="swiper-slide"><img src="images/363165.jpg" alt="" /></div>
+				<div class="swiper-slide"><img src="images/43183.jpg" alt="" /></div>
+				<div class="swiper-slide"><img src="images/499259.jpg" alt="" /></div>
+			</div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+
+			<!-- 如果需要导航按钮 -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+			<!-- 如果需要滚动条 -->
+			<div class="swiper-scrollbar"></div>
+		</div>
+
+		<!--<div class="wrapper">
+			<div class="banner">
+				<ul class="banner-list">
+					<li class="item active">
+						<img src="images/351376.jpg" alt="" />
+					</li>
+					<li class="item">
+						<img src="images/360617.jpg" alt="" />
+					</li>
+					<li class="item">
+						<img src="images/363165.jpg" alt="" />
+					</li>
+					<li class="item">
+						<img src="images/43183.jpg" alt="" />
+					</li>
+					<li class="item">
+						<img src="images/499259.jpg" alt="" />
+					</li>
+				</ul>
+				<div class="banner-num">
+				</div>
+			</div>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript">
+		var mySwiper = new Swiper('.swiper-container', {
+			//direction: 'vertical', // 垂直切换选项
+			loop: true, // 循环模式选项
+			speed:3000,
+			autoplay:true,//自动切换
+			
+			// 如果需要分页器
+			pagination: {
+				el: '.swiper-pagination',
+				clickable :true,//点击分页器的指示点分页器会控制Swiper切换
+			},
+
+			// 如果需要前进后退按钮
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+
+			// 如果需要滚动条
+			scrollbar: {
+				el: '.swiper-scrollbar',
+			},
+		})
+	</script>
+
+</html>
