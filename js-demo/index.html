@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>闭包-for循环click事件</title>
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <style type="text/css">
+        .wrapper {
+            height: 3200px;
+            background: #F3D250;
+        }
+        
+        .list {
+            font-size: 0;
+        }
+        
+        .item {
+            display: inline-block;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #fff;
+            /*background: #e49bd2;*/
+            background: #bb7819;
+            font-size: 16px;
+        }
+    </style>
+
+    <body>
+        <div class="wrapper">
+            <ul class="list">
+                <li class="item active">0</li>
+                <li class="item">1</li>
+                <li class="item">2</li>
+                <li class="item">3</li>
+                <li class="item">4</li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        var arr = document.getElementsByClassName("item");
+//              for(var i = 0; i < arr.length; i++) {
+//                  console.log(i);//0,1,2,3,4页面加载先执行for循环依次输出0，1，2，3，4执行完之后i=5
+//                  //由于闭包的特性函数中的变量都保存在内存中，所以点击的时候会输出5
+//                  arr[i].onclick = function() {
+//                      console.log(i);//5
+//                  }
+//              }
+
+        //方法一
+                for(var i = 0; i < arr.length; i++) {　
+                    (function(n) {
+                        console.log(i);//0，1，2，3，4
+                        console.log(n);//0，1，2，3，4
+                        arr[i].onclick = function() {
+                            console.log(i); //5
+                            console.log(n); // 当前点击的index 0，1，2，3，4
+                            for(var j = 0; j < arr.length; j++) {
+                                console.log(j);//0,1,2,3,4每次点击都输出这5个
+                            }
+                        }
+                    })(i)
+                }
+
+        //      for(var i = 0; i < arr.length; i++) {
+        //          var j=i;
+        //          arr[i].onclick = function() {
+        //              console.log(j);//4
+        //          }
+        //      }
+
+        //方法二
+        //      for(var i = 0; i < arr.length; i++) {
+        //          let j=i;//ES6
+        //          arr[i].onclick = function() {
+        //              console.log(j);// 当前点击的index 0，1，2，3，4
+        //          }
+        //      }
+
+        //方法三
+        //      for(var i = 0; i<arr.length; i++){
+        //          arr[i].onclick = (function(arg){
+        //              return function () {
+        //                 console.log(arg);// 当前点击的index 0，1，2，3，4
+        //              }
+        //          })(i);
+        //      }
+
+        //方法四
+//      for(var i = 0; i < arr.length; i++) {
+//          //为当前数组项(当前p对象)添加一个名为i的属性，值为循环体i变量的值
+//          //此时当前p对象的i属性并不是对循环体的i变量的引用，而是一个独立p对象的属性，属性值在声明的时候就确定了
+//          arr[i].i = i;
+//          arr[i].onclick = function() {
+//              console.log(this.i);
+//          }
+//      }
+    </script>
+
+</html>
