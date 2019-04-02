@@ -45,54 +45,82 @@
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         var arr = document.getElementsByClassName("item");
-//              for(var i = 0; i < arr.length; i++) {
-//                  console.log(i);//0,1,2,3,4页面加载先执行for循环依次输出0，1，2，3，4执行完之后i=5
-//                  //由于闭包的特性函数中的变量都保存在内存中，所以点击的时候会输出5
-//                  arr[i].onclick = function() {
-//                      console.log(i);//5
+        var arr1 = document.getElementsByClassName("active");
+//      for(var i = 0; i < arr.length; i++) {
+//          console.log(i);//0,1,2,3,4页面加载先执行for循环依次输出0，1，2，3，4执行完之后i=5
+//          arr[i].onclick = function() {
+//              console.log(i);//5
+//          }
+//      }
+//在这个函数里面的i其实引用的是最后一次i的值，为什么不是1,2,3,4…呢？
+//因为在你for循环的时候，你并没有执行这个函数，这个函数是在点击的时候才执行的，
+//当执行这个函数的时候，它发现它自己没有这个变量i，于是向它的作用域链中查找这个变量i，
+//因为当单击这个box的时候已经for循环完了，所以储存在作用域链里面的i的值就是10，最后就打印出来5了。
+
+
+//  for(var i=0;i<10;i++){
+//      arr[0].onclick = a();
+//      function a(){
+//          console.log(i); //不用点击直接执行1,2,3,4.....
+//      }
+//  }
+
+//方法0
+//      for(var i = 0; i < arr.length; i++) {
+//          console.log(i);//0,1,2,3,4页面加载先执行for循环依次输出0，1，2，3，4执行完之后i=5
+//          arr[i].onclick = new Function(
+//               "console.log("+i+");"
+//          )
+//      }
+
+//方法一
+//      for(var i = 0; i < arr.length; i++) {　
+//          console.log(i);//0,1,2,3,4页面加载先执行
+//          (function(n) {
+//              console.log(i);//0，1，2，3，4页面加载先执行
+//              console.log(n);//0，1，2，3，4页面加载先执行
+//              arr[i].onclick = function() {
+//                  console.log(i); //5
+//                  console.log(n); // 当前点击的index 0，1，2，3，4
+//                  for(var j = 0; j < arr.length; j++) {
+//                      console.log(j);//0,1,2,3,4每次点击都输出这5个
 //                  }
 //              }
+//          })(i)
+//      }
 
-        //方法一
-                for(var i = 0; i < arr.length; i++) {　
-                    (function(n) {
-                        console.log(i);//0，1，2，3，4
-                        console.log(n);//0，1，2，3，4
-                        arr[i].onclick = function() {
-                            console.log(i); //5
-                            console.log(n); // 当前点击的index 0，1，2，3，4
-                            for(var j = 0; j < arr.length; j++) {
-                                console.log(j);//0,1,2,3,4每次点击都输出这5个
-                            }
-                        }
-                    })(i)
-                }
+//      for(var i = 0; i < arr.length; i++) {
+//          var j=i;
+//          arr[i].onclick = function() {
+//              console.log(j);//4
+//          }
+//      }
 
-        //      for(var i = 0; i < arr.length; i++) {
-        //          var j=i;
-        //          arr[i].onclick = function() {
-        //              console.log(j);//4
-        //          }
-        //      }
+//方法二
+//      for(var i = 0; i < arr.length; i++) {
+//          let j=i;//ES6
+//          arr[i].onclick = function() {
+//              console.log(j);// 当前点击的index 0，1，2，3，4
+//          }
+//      }
 
-        //方法二
-        //      for(var i = 0; i < arr.length; i++) {
-        //          let j=i;//ES6
-        //          arr[i].onclick = function() {
-        //              console.log(j);// 当前点击的index 0，1，2，3，4
-        //          }
-        //      }
+//      for(let i = 0; i < arr.length; i++) {
+//          console.log(i);//0,1,2,3,4
+//          arr[i].onclick = function() {
+//              console.log(i);// 当前点击的index 0，1，2，3，4
+//          }
+//      }
 
-        //方法三
-        //      for(var i = 0; i<arr.length; i++){
-        //          arr[i].onclick = (function(arg){
-        //              return function () {
-        //                 console.log(arg);// 当前点击的index 0，1，2，3，4
-        //              }
-        //          })(i);
-        //      }
+//方法三
+//      for(var i = 0; i<arr.length; i++){
+//          arr[i].onclick = (function(arg){
+//              return function () {
+//                 console.log(arg);// 当前点击的index 0，1，2，3，4
+//              }
+//          })(i);
+//      }
 
-        //方法四
+//方法四
 //      for(var i = 0; i < arr.length; i++) {
 //          //为当前数组项(当前p对象)添加一个名为i的属性，值为循环体i变量的值
 //          //此时当前p对象的i属性并不是对循环体的i变量的引用，而是一个独立p对象的属性，属性值在声明的时候就确定了
