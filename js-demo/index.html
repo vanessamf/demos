@@ -74,20 +74,20 @@
 //      }
 
 //方法一
-//      for(var i = 0; i < arr.length; i++) {　
-//          console.log(i);//0,1,2,3,4页面加载先执行
-//          (function(n) {
-//              console.log(i);//0，1，2，3，4页面加载先执行
-//              console.log(n);//0，1，2，3，4页面加载先执行
-//              arr[i].onclick = function() {
-//                  console.log(i); //5
-//                  console.log(n); // 当前点击的index 0，1，2，3，4
+        for(var i = 0; i < arr.length; i++) {
+            console.log(i);//0,1,2,3,4页面加载先执行
+            (function(n) {
+                //console.log(i);//0，1，2，3，4页面加载先执行
+                console.log(n);//0，1，2，3，4页面加载先执行
+                arr[i].onclick = function() {
+                    console.log(i); //5
+                    console.log(n); // 当前点击的index 0，1，2，3，4
 //                  for(var j = 0; j < arr.length; j++) {
 //                      console.log(j);//0,1,2,3,4每次点击都输出这5个
 //                  }
-//              }
-//          })(i)
-//      }
+                }
+            })(i) 
+        }
 
 //      for(var i = 0; i < arr.length; i++) {
 //          var j=i;

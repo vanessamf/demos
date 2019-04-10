@@ -25,7 +25,7 @@ $(function() {
 	var num = $(".banner-list .item").length;
 
 	for(var i = 0; i < num; i++) {
-		$(".banner-num").append("<a class='num-text' href='javascript:void(0)'>" + "</a>");
+		$(".banner-num").append("<a class='num-text' href='javascript:void(0);'>" + "</a>");
 	}
 	$(".banner-num .num-text").eq(0).addClass("active");
 
