@@ -1,0 +1,568 @@
+
+body {
+	line-height: 2em;
+	padding: 30px;
+}
+.wrapper{
+	width:130px;
+	padding:20px;
+	margin-bottom:20px;
+	margin-right:20px;
+	border:1px solid #3e97eb;
+	float:left;
+}
+.wrapper label{
+	line-height: 22px;
+	margin-top:10px;
+}
+
+
+.magic-radio,
+.magic-checkbox {
+	position: absolute;
+	display: none;
+}
+
+.magic-radio+label,
+.magic-checkbox+label {
+	position: relative;
+	display: block;
+	padding-left: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+@keyframes hover-color {
+    from {
+        border-color: #c0c0c0;
+    }
+    to {
+        border-color: #3e97eb;
+    }
+}
+ /*hover添加边框颜色*/
+.magic-radio+label:hover:before,
+.magic-checkbox+label:hover:before {
+	animation-duration: 0.4s;
+	animation-fill-mode: both;
+	animation-name: hover-color;
+}
+
+/*选中前公共边框样式*/
+.magic-radio+label:before,
+.magic-checkbox+label:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #c0c0c0;
+}
+/*选中前radio边框样式*/
+.magic-radio+label:before {
+    border-radius: 50%;
+}
+/*选中前checkbox边框样式*/
+.magic-checkbox+label:before {
+    border-radius: 3px;
+}
+
+/*选中后公共边框样式*/
+.magic-radio:checked+label:before,
+.magic-checkbox:checked+label:before {
+    animation-name: none;
+}
+/*选中后radio边框样式*/
+.magic-radio:checked+label:before {
+    border: 1px solid #3e97eb;
+}
+/*选中后checkbox边框和背景样式*/
+.magic-checkbox:checked+label:before {
+    /*border: #3e97eb;*/
+    border: 1px solid #3e97eb;
+    background: #3e97eb;
+}
+
+/*选中前公共内容样式*/
+.magic-radio+label:after,
+.magic-checkbox+label:after {
+    position: absolute;
+    display: none;
+    content: '';
+}
+
+/*选中后公共内容样式*/
+.magic-radio:checked+label:after,
+.magic-checkbox:checked+label:after {
+    display: block;
+}
+/*选中后radio内容样式*/
+.magic-radio:checked+label:after {
+    top: 7px;
+    left: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3e97eb;
+}
+/*选中后checkbox内容样式*/
+.magic-checkbox:checked+label:after {
+    /*top: 2px;
+    left: 7px;*/
+    top: 3px;
+    left: 8px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-top: 0;
+    border-left: 0;
+}
+/*disabled效果*/
+.magic-radio[disabled],
+.magic-checkbox[disabled] {
+    cursor: not-allowed;
+}
+
+.magic-radio[disabled]+label,
+.magic-checkbox[disabled]+label {
+	cursor: not-allowed;
+	color: #e4e4e4;
+}
+
+.magic-radio[disabled]+label:before,
+.magic-checkbox[disabled]+label:before {
+    border-color: #e4e4e4;
+}
+
+.magic-radio[disabled]+label:hover,
+.magic-radio[disabled]+label:before,
+.magic-radio[disabled]+label:after,
+.magic-checkbox[disabled]+label:hover,
+.magic-checkbox[disabled]+label:before,
+.magic-checkbox[disabled]+label:after {
+	cursor: not-allowed;
+}
+/*防止hover添加之前的边框颜色*/
+.magic-radio[disabled]+label:hover:before,
+.magic-checkbox[disabled]+label:hover:before {
+	border: 1px solid #e4e4e4;
+	animation-name: none;
+}
+
+/*选中后disabled radio边框颜色*/
+.magic-radio:checked[disabled]+label:before {
+    border: 1px solid #c9e2f9;
+}
+/*选中后disabled radion内容颜色*/
+.magic-radio:checked[disabled]+label:after {
+    background: #c9e2f9;
+}
+/*选中后disabled checkbox边框和背景色*/
+.magic-checkbox:checked[disabled]+label:before {
+    /*border: #c9e2f9;*/
+    border: 1px solid #c9e2f9;
+    background: #c9e2f9;
+}
+
+/*---替换颜色---*/
+/*---magic magic-green---*/
+@keyframes hover-color-green {
+	from {
+		border-color: #c0c0c0;
+	}
+	to {
+		border-color: #0eb58c;
+	}
+}
+.magic-radio.magic-green+label:hover:before,
+.magic-checkbox.magic-green+label:hover:before {
+	animation-name: hover-color-green;
+}
+.magic-radio.magic-green[disabled]+label:hover:before,
+.magic-checkbox.magic-green[disabled]+label:hover:before {
+	border: 1px solid #e4e4e4;
+	animation-name: none;
+}
+
+/*选中后radio边框颜色*/
+.magic-radio.magic-green:checked+label:before {
+	border: 1px solid #0eb58c;
+}
+/*选中后radio内容颜色*/
+.magic-radio.magic-green:checked+label:after {
+    background: #0eb58c;
+}
+/*选中后disabled radio边框颜色*/
+.magic-radio.magic-green:checked[disabled]+label:before {
+	border: 1px solid #bbe6dc;
+}
+/*选中后disabled radio内容颜色*/
+.magic-radio.magic-green:checked[disabled]+label:after {
+	background: #bbe6dc;
+}
+/*选中后checkbox边框和背景颜色*/
+.magic-checkbox.magic-green:checked+label:before {
+	border: 1px solid #0eb58c;
+	background: #0eb58c;
+}
+/*选中后disabled checkbox边框和背景色*/
+.magic-checkbox.magic-green:checked[disabled]+label:before {
+	border: 1px solid #bbe6dc;
+	background: #bbe6dc;
+}
+
+
+/*---magic_check_square-blue---*/
+/*magic-square*/
+.magic-square-radio,
+.magic-square-checkbox {
+	position: absolute;
+	display: none;
+}
+
+.magic-square-radio+label,
+.magic-square-checkbox+label {
+	position: relative;
+	display: block;
+	padding-left: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+@keyframes square-hover-color {
+    from {
+        border-color: #c0c0c0;
+    }
+    to {
+        border-color: #3e97eb;
+    }
+}
+/*hover添加边框颜色*/
+.magic-square-radio+label:hover:before,
+.magic-square-checkbox+label:hover:before {
+	animation-duration: 0.4s;
+	animation-fill-mode: both;
+	animation-name: square-hover-color;
+}
+/*选中前公共边框样式*/
+.magic-square-radio+label:before,
+.magic-square-checkbox+label:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #c0c0c0;
+}
+/*选中前radio边框样式*/
+.magic-square-radio+label:before {
+    border-radius: 50%;
+}
+/*选中前checkbox边框样式*/
+.magic-square-checkbox+label:before {
+    border-radius: 3px;
+}
+/*选中后公共边框和背景颜色*/
+.magic-square-radio:checked+label:before,
+.magic-square-checkbox:checked+label:before {
+    animation-name: none;
+    border: 1px solid #3e97eb;
+    background: #3e97eb;
+}
+.magic-square-radio:checked+label:before,
+.magic-square-checkbox:checked+label:before {
+    /*border: #3e97eb;*/
+}
+/*选中前公共内容样式*/
+.magic-square-radio+label:after,
+.magic-square-checkbox+label:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+/*选中后公共内容样式*/
+.magic-square-radio:checked+label:after,
+.magic-square-checkbox:checked+label:after {
+    display: block;
+}
+/*选中后公共内容样式*/
+.magic-square-radio:checked+label:after,
+.magic-square-checkbox:checked+label:after {
+    /*top: 2px;
+    left: 7px;*/
+    top: 3px;
+    left: 8px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-top: 0;
+    border-left: 0;
+}
+/*disabled效果*/
+.magic-square-radio[disabled],
+.magic-square-checkbox[disabled] {
+    cursor: not-allowed;
+}
+.magic-square-radio[disabled]+label,
+.magic-square-checkbox[disabled]+label {
+	cursor: not-allowed;
+	color: #e4e4e4;
+}
+.magic-square-radio[disabled]+label:before,
+.magic-square-checkbox[disabled]+label:before {
+    border-color: #e4e4e4;
+}
+.magic-square-radio[disabled]+label:hover,
+.magic-square-radio[disabled]+label:before,
+.magic-square-radio[disabled]+label:after,
+.magic-square-checkbox[disabled]+label:hover,
+.magic-square-checkbox[disabled]+label:before,
+.magic-square-checkbox[disabled]+label:after {
+	cursor: not-allowed;
+}
+/*防止hover添加之前的边框颜色*/
+.magic-square-radio[disabled]+label:hover:before,
+.magic-square-checkbox[disabled]+label:hover:before {
+	border: 1px solid #e4e4e4;
+	animation-name: none;
+}
+
+/*magic-square magic-green*/
+/*选中后disabled 公共边框和背景色*/
+@keyframes square-hover-color-green {
+    from {
+        border-color: #c0c0c0;
+    }
+    to {
+        border-color: #0eb58c;
+    }
+}
+
+.magic-square-radio.magic-green+label:hover:before,
+.magic-square-checkbox.magic-green+label:hover:before {
+    animation-name: square-hover-color-green;
+}
+
+/*选中后公共边框和背景颜色*/
+.magic-square-radio.magic-green:checked+label:before,
+.magic-square-checkbox.magic-green:checked+label:before {
+    border: 1px solid #0eb58c;
+    background: #0eb58c;
+}
+
+/*防止hover添加之前的边框颜色*/
+.magic-square-radio.magic-green[disabled]+label:hover:before,
+.magic-square-checkbox.magic-green[disabled]+label:hover:before {
+    border: 1px solid #e4e4e4;
+    animation-name: none;
+}
+/*选中后disabled 公共边框和背景色*/
+.magic-square-radio.magic-green:checked[disabled]+label:before,
+.magic-square-checkbox.magic-green:checked[disabled]+label:before {
+    border: 1px solid #bbe6dc;
+    background: #bbe6dc;
+}
+
+
+
+
+
+/*scale*/
+/*背景在after上*/
+.magic-square-radio2,
+.magic-square-checkbox2 {
+	position: absolute;
+	display: none;
+}
+
+.magic-square-radio2+label,
+.magic-square-checkbox2+label {
+	position: relative;
+	display: block;
+	padding-left: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+@keyframes hover-color2 {
+    from {
+        border-color: #c0c0c0;
+    }
+    to {
+        border-color: #0eb58c;
+    }
+}
+/*hover添加边框颜色*/
+.magic-square-radio2+label:hover:before,
+.magic-square-checkbox2+label:hover:before {
+	animation-duration: 0.4s;
+	animation-fill-mode: both;
+	animation-name: hover-color2;
+}
+/*选中前公共边框样式*/
+.magic-square-radio2+label:before,
+.magic-square-checkbox2+label:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	content: '';
+	border: 1px solid #c0c0c0;
+}
+/*选中前radio边框样式*/
+.magic-square-radio2+label:before {
+    border-radius: 50%;
+}
+/*选中前checkbox边框样式*/
+.magic-square-checkbox2+label:before {
+    border-radius: 3px;
+}
+/*选中后公共边框颜色*/
+.magic-square-radio2:checked+label:before,
+.magic-square-checkbox2:checked+label:before {
+    animation-name: none;
+    border: 1px solid #3e97eb;
+}
+/*选中前公共内容样式*/
+.magic-square-radio2+label:after,
+.magic-square-checkbox2+label:after {
+    position: absolute;
+    content: "\f00c";
+    font-size: 14px;
+    font-family: FontAwesome;
+    font-weight: 400;
+    text-align: center;
+    top: 1px;
+    left: 1px;
+    color: #fff;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    background: #3e97eb;
+}
+/*选中前radio内容样式*/
+.magic-square-radio2+label:after{
+    border-radius: 50%;
+}
+/*选中后公共内容样式*/
+.magic-square-radio2:checked+label:after,
+.magic-square-checkbox2:checked+label:after {
+    display: block;
+}
+
+/*disabled效果*/
+.magic-square-radio2[disabled],
+.magic-square-checkbox2[disabled] {
+    cursor: not-allowed;
+}
+
+.magic-square-radio2[disabled]+label,
+.magic-square-checkbox2[disabled]+label {
+	cursor: not-allowed;
+	color: #e4e4e4;
+}
+
+.magic-square-radio2[disabled]+label:before,
+.magic-square-checkbox2[disabled]+label:before {
+    border-color: #e4e4e4;
+}
+
+.magic-square-radio2[disabled]+label:hover,
+.magic-square-radio2[disabled]+label:before,
+.magic-square-radio2[disabled]+label:after,
+.magic-square-checkbox2[disabled]+label:hover,
+.magic-square-checkbox2[disabled]+label:before,
+.magic-square-checkbox2[disabled]+label:after {
+	cursor: not-allowed;
+}
+/*防止hover添加之前的边框颜色*/
+.magic-square-radio2[disabled]+label:hover:before,
+.magic-square-checkbox2[disabled]+label:hover:before {
+	border: 1px solid #e4e4e4;
+	animation-name: none;
+}
+/*选中后disabled 公共边框颜色*/
+.magic-square-radio2:checked[disabled]+label:before,
+.magic-square-checkbox2:checked[disabled]+label:before {
+	/*border: #c9e2f9;*/
+	border: 1px solid #c9e2f9;
+}
+/*选中后disabled 公共内容颜色*/
+.magic-square-radio2:checked[disabled]+label:after,
+.magic-square-checkbox2:checked[disabled]+label:after {
+	/*border: #c9e2f9;*/
+	background: #c9e2f9;
+}
+
+/*选中前内容缩放*/
+.magic-square-radio2.magic-scale+label:after,
+.magic-square-checkbox2.magic-scale+label:after{
+	opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transform: scale(0.3);
+    transform: scale(0.3);
+    -webkit-transition: opacity .25s linear, -webkit-transform .25s linear;
+    transition: opacity .25s linear, -webkit-transform .25s linear;
+    transition: opacity .25s linear, transform .25s linear;
+    transition: opacity .25s linear, transform .25s linear, -webkit-transform .25s linear;
+}
+/*选中后内容缩放*/
+.magic-square-radio2.magic-scale:checked+label:after,
+.magic-square-checkbox2.magic-scale:checked+label:after {
+	opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+
+/*magic-square magic-orange magic-scale*/
+@keyframes hover-color-orange {
+	from {
+		border-color: #c0c0c0;
+	}
+	to {
+		border-color: #ea923c;
+	}
+}
+.magic-square-radio2.magic-orange+label:hover:before,
+.magic-square-checkbox2.magic-orange+label:hover:before {
+	animation-name: hover-color-orange;
+}
+/*选中后公共边框颜色*/
+.magic-square-radio2.magic-orange:checked+label:before,
+.magic-square-checkbox2.magic-orange:checked+label:before {
+	border: 1px solid #ea923c;
+}
+/*选中后公共背景颜色*/
+.magic-square-radio2.magic-orange+label:after,
+.magic-square-checkbox2.magic-orange+label:after {
+    background: #ea923c;
+}
+/*防止hover添加之前的边框颜色*/
+.magic-square-radio2.magic-orange[disabled]+label:hover:before,
+.magic-square-checkbox2.magic-orange[disabled]+label:hover:before {
+    border: 1px solid #e4e4e4;
+    animation-name: none;
+}
+/*选中后disabled 公共边框色*/
+.magic-square-radio2.magic-orange:checked[disabled]+label:before,
+.magic-square-checkbox2.magic-orange:checked[disabled]+label:before {
+	border: 1px solid #f5cba2;
+}
+/*选中后disabled 公共背景色*/
+.magic-square-radio2.magic-orange:checked[disabled]+label:after,
+.magic-square-checkbox2.magic-orange:checked[disabled]+label:after {
+	background: #f5cba2;
+}

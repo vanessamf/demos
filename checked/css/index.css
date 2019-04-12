@@ -1,0 +1,56 @@
+.wrapper{
+	padding:100px;
+	/*height:3200px;
+	background:#F3D250;*/
+}
+.gender-wrapper{
+	display: flex;
+}
+.gender-wrapper .gender{
+	padding-right:50px;
+	margin-right:20px;
+}
+ .magic-radio{
+	display: none;
+}
+ .magic-radio+label {
+    position: relative;
+    display: inline-block;
+    padding-left: .7rem;
+    cursor: pointer;
+    vertical-align: middle;
+    /* line-height: .55rem; */
+}
+.magic-radio+label:before {
+    content: '';
+    position: absolute;
+    right: -2rem;
+    top: .6rem;
+    width: 1.2857rem;
+    height: 1.2857rem;
+    border: 1px solid #d5d5d5;
+    border-radius: 4.5rem;
+}
+ /*.magic-radio + label:hover:before, .magic-checkbox + label:hover:before {
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: hover-color; 
+    }*/
+     .magic-radio + label:after,
+  .magic-checkbox + label:after {
+    position: absolute;
+    display: none;
+    content: ''; }
+.gender input[type='radio']:checked + label:after {
+    content: '';
+    position: absolute;
+     display: block;
+    right: -2rem;
+    top: .6rem;
+    width: 1.4286rem;
+    height: 1.4286rem;
+    border: none;
+    background-image: url(../images/ok@2x.png);
+    background-size: 1.4286rem 1.4286rem;
+    background-repeat: no-repeat;
+}

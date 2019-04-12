@@ -5,8 +5,16 @@ window.onresize = function() {
 	//	banner();
 }
 var banner = function() {
+    /*1. 自动轮播图且无缝   定时器，过渡*/
+    /*2. 点要随着图片的轮播改变  根据索引切换*/ 
+    /*3. 滑动效果  利用touch事件完成*/
+    /*4. 滑动结束的时候    如果滑动的距离不超过屏幕的1/3  吸附回去   过渡*/
+    /*5. 滑动结束的时候    如果滑动的距离超过屏幕的1/3  切换（上一张，下一张）根据滑动的方向，过渡*/
+    /*轮播图*/
 	var banner = document.querySelector('.banner');
+	/*屏幕宽度*/
 	var width = banner.offsetWidth;
+	/*图片容器*/
 	var imageBox = banner.querySelector('.banner-list');
 	/*点容器*/
 	var pointBox = banner.querySelector('.banner-num');
@@ -42,7 +50,7 @@ var banner = function() {
 	//		}
 	//	}, 1000);
 	var timer = null;
-	Carousel = function(p) {
+	Carousel = function() {
 		clearInterval(timer);
 		timer = setInterval(function() {
 			index++;
@@ -50,19 +58,22 @@ var banner = function() {
 			setTranslateX(-index * width);
 		}, 2000);
 	}
-	Carousel(index);
+	Carousel();
 	//	var timer = setInterval(function() {
 	//		index++;
 	//		addTransition();
 	//		setTranslateX(-index * width);
 	//	}, 2000);
 
+    /*需要等最后一张动画结束去判断 是否瞬间定位第一张*/
 	imageBox.addEventListener("transitionend", function() {
 		if(index >= num - 1) {
+		    //最后一张的时候变为第二张，即要显示的第一张
 			index = 1;
 			removeTransition();
 			setTranslateX(-index * width);
 		} else if(index <= 0) {
+		    //第一张的时候变为倒数第二张，即要显示的最后一张
 			index = num - 2;
 			removeTransition();
 			setTranslateX(-index * width);
@@ -116,6 +127,7 @@ var banner = function() {
 		document.querySelector(".prev").style.display="none";
 		document.querySelector(".next").style.display="none";
 	})
+	
 	//手指滑动切换
 	var startX = 0;
 	var distanceX = 0;
@@ -142,7 +154,8 @@ var banner = function() {
 	});
 
 	imageBox.addEventListener('touchend', function(e) {
-		/*4.  5.  实现*/
+		/*4. 滑动结束的时候    如果滑动的距离不超过屏幕的1/3  吸附回去   过渡*/
+        /*5. 滑动结束的时候    如果滑动的距离超过屏幕的1/3  切换（上一张，下一张）根据滑动的方向，过渡*/
 		/*要使用移动的距离*/
 		if(isMove) {
 			if(Math.abs(distanceX) < width / 3) {
@@ -175,6 +188,6 @@ var banner = function() {
 		//			addTransition();
 		//			setTranslateX(-index * width);
 		//		}, 2000);
-		Carousel(index);
+		Carousel();
 	});
 }
