@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<a href="javascript:void(0);" id="toTop" class="to-top fa fa-arrow-circle-up">
+			</a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		//回到顶部
+		backButton = $('.to-top');
+
+		function backToTop() {
+			$('html,body').animate({
+				scrollTop: 0
+			}, 800)
+		}
+		backButton.on('click', backToTop);
+
+		$(window).on('scroll', function() {
+			if($(window).scrollTop() > $(window).height())
+				backButton.fadeIn();
+			else
+				backButton.fadeOut();
+		})
+		$(window).trigger('scroll'); //只要一刷新让程序自己触发事件
+	</script>
+</html>

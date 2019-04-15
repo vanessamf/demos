@@ -1,0 +1,30 @@
+.wrapper{
+	height:3200px;
+	background:#F3D250;
+}
+.to-top{
+    display: none;
+	position: fixed;
+    bottom: 30px;
+ 	right: 4%;
+    text-decoration: none;
+    color:rgba(250,142,214, 0.8);
+    font-size:50px;
+    }   
+     
+.to-top:focus,
+.to-top:link,  
+.to-top:visited,  
+.to-top:hover,
+.to-top:active {
+ /*color:rgb(250,142,214);*/
+	text-decoration: none;
+}
+
+.to-top:focus{
+	color:#FF8AD8;
+}
+
+.to-top:hover{
+	color:#FF8AD8;
+}

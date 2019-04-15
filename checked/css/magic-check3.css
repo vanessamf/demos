@@ -336,6 +336,13 @@ body {
 	border: 1px solid #e4e4e4;
 	animation-name: none;
 }
+/*选中后disabled 公共边框和背景色*/
+.magic-square-radio:checked[disabled]+label:before, 
+.magic-square-checkbox:checked[disabled]+label:before {
+    /* border: #c9e2f9; */
+    border: 1px solid #c9e2f9;
+    background: #c9e2f9;
+}
 
 /*magic-square magic-green*/
 /*选中后disabled 公共边框和背景色*/
