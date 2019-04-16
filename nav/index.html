@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<nav class="nav-menu">
+				<a class="nav-trigger" href="#0">
+					Menu
+					<span aria-hidden="true"></span>
+				</a>
+				<ul>
+					<li>
+						<a href="#home"><span>主页</span></a>
+					</li>
+					<li>
+						<a href="#about"><span>关于我</span></a>
+					</li>
+					<li>
+						<a href="#skills"><span>知识技能</span></a>
+					</li>
+					<li>
+						<a href="#experience"><span>工作经历</span></a>
+					</li>
+					<li>
+						<a href="#education"><span>教育经历</span></a>
+					</li>
+					<li>
+						<a href="#projects"><span>个人作品</span></a>
+					</li>
+					<li>
+						<a href="#contact"><span>联系我</span></a>
+					</li>
+				</ul>
+				<span class="nav-bg"></span>
+			</nav>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		if($('.nav-menu').length > 0) {
+			var navMenu = $('.nav-menu');
+
+			navMenu.each(function() {
+				var navMenu = $(this);
+				var snavMenuTrigger = navMenu.find('.nav-trigger');
+
+				snavMenuTrigger.on('click', function(event) {
+					event.preventDefault();
+					navMenu.toggleClass('navShow');
+				});
+			});
+
+			$(document).on('click', function(event) {
+				(!$(event.target).is('.nav-trigger') && !$(event.target).is('.nav-trigger span')) && navMenu.removeClass('navShow');
+			});
+		}
+
+		$(".nav-menu ul a").click(function() {
+			$(".nav-menu ul li a").removeClass("cur-page");
+			$(this).addClass("cur-page");
+		});
+
+		$(window).on('scroll', function() {
+			if($(window).scrollTop() < 500) {
+				$(".nav-menu ul li a").removeClass("cur-page");
+				$(".nav-menu ul li:nth-child(1) a").addClass("cur-page");
+			}
+			if($(window).scrollTop() >= 500) {
+				$(".nav-menu ul li a").removeClass("cur-page");
+				$(".nav-menu ul li:nth-child(2) a").addClass("cur-page");
+			}
+		})
+	</script>
+
+</html>
