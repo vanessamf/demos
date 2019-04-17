@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>懒加载实例</title>
+		<style type="text/css">
+			/*一定要有预先高度*/
+			
+			img {
+				width: 600px;
+				height: 260px;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/12254.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/12262.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/1957.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/3092.jpg" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/4000.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/12261.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/17254.jpg" alt="" />
+		</div>
+		<div>
+			<img class="lazyload" src="img/load.gif" data-src="img/44835.jpg" alt="" />
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/scrollLoad.js"></script>
+	<script type="text/javascript">
+//		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+//		observer.observe();
+		$("img.lazyload").scrollLoad();
+	</script>
+
+</html>

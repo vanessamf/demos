@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>懒加载实例</title>
+		<style type="text/css">
+			/*一定要有预先高度*/
+			
+			img {
+				width: 600px;
+				height: 260px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/12254.jpg" alt="Image Not Found" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/12262.jpg" alt="" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/1957.jpg" alt="" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/3092.jpg" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/4000.jpg" alt="" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/12261.jpg" alt="" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/17254.jpg" alt="" />
+		</div>
+		<!--<div>
+			<img class="pic" src="img/load.gif" data-src="img/2222" onerror="javascript:this.src='img/load.gif';this.onerror = null" alt="Image Not Found" />
+		</div>-->
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/33333.jpg" alt="Image 33333 Not Found" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="img/44835.jpg" alt="" />
+		</div>
+		<div>
+			<img class="pic" src="img/load.gif" data-src="" alt="" />
+		</div>
+	</body>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/lazyload.js"></script>-->
+	<script type="text/javascript">
+		function isVisible1($node) {
+			var winH = $(window).height(),
+			//浏览器窗口高度
+			scrollTop = $(document).scrollTop(),
+			//滚轮滚动高度
+			offSetTop = $node.offset().top; //元素距离浏览器顶部的距离
+			if(offSetTop < winH + scrollTop) {
+				let src_value = $node.attr("data-src");
+				$node.attr("src", src_value);
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function loadPartImg1() {
+			$(".pic").each(function() {
+//				if($(this).attr("src") != "img/load.gif") {
+//					return;
+//				} else {
+//					isVisible1($(this));
+//				}
+				
+			    if($(this).attr("data-src") == undefined || $(this).attr("data-src") == "") {
+                    return;
+                } else {
+                    isVisible1($(this));
+                }
+			});
+		}
+		loadPartImg1();
+		$(window).on("scroll", function() {
+			loadPartImg1();
+			$(".pic").one("error", function(e) {
+				$(this).attr("src", "img/load.gif");
+			});
+
+			//			$('.pic').error(function(){
+			//  				$(this).attr('src',"img/load.gif");
+			//     		});
+		});
+	</script>
+
+	<script>
+		//WD最终版
+		function isVisible($node) {
+			var winH = $(window).height();
+			var scrollTop = $(".menu-sub-nav").scrollTop();
+			//元素距离容器menu-sub-list顶部距离
+			var offSetTop = $node[0].offsetTop + $node.eq(0).parents(".sub-item-container")[0].offsetTop;
+			//容器的高度
+			var conH = $(window).height() - $(".order-box").height() - $(".search-wrap").height();
+			if(offSetTop < conH + scrollTop) {
+				let src_value = $node.children().eq(0).children().eq(0).attr("data-src");
+				$node.children().eq(0).children().eq(0).attr("src", src_value);
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function loadPartImg() {
+			$(".mt-d-item").each(function() {
+				var $img = $(this).children().eq(0).children().eq(0);
+				if($img.attr("data-src") == undefined || $img.attr("data-src") == "") {
+					return;
+				} else {
+					isVisible($(this));
+				}
+			});
+		}
+		loadPartImg();
+		$('.menu-sub-nav').on("scroll", function() {
+			loadPartImg();
+			$(".sub-dish-name img").one("error", function(e) {
+				$(this).attr("src", "../Content/images/YYD_default.png");
+			});
+		});
+	</script>
+
+</html>
