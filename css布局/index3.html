@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>圣杯布局</title>
+	</head>
+	<style type="text/css">
+		body {
+			min-width: 580px;
+			/*2*left + right*/
+			/*这样设置之后middle的最小宽度就不会小于左侧*/
+		}
+		
+		.container {
+			padding-left: 200px;
+			padding-right: 180px;
+		}
+		
+		.middle {
+			float: left;
+			width: 100%;
+			height: 300px;
+			background-color: rgba(255, 0, 0, .5);
+		}
+		.left{
+		    position:relative;
+		    left:-200px;
+		    float:left;
+		    width:200px;
+		    height: 300px;
+		    margin-left:-100%;
+		    background-color: rgba(0, 255, 0, .5);
+		}
+		.right{
+		    position:relative;
+		    right:-180px;
+		    float:left;
+		    width:180px;
+		    height: 300px;
+		    margin-left:-180px;
+		    background-color: rgba(0, 0, 255, .5);
+		}
+		
+		.clearfloat{
+            zoom:1;
+        }
+        .clearfloat:after{
+            display:block;
+            clear:both;
+            content: "";
+            visibility:hidden;
+            height:0;
+        }
+	</style>
+
+	<body>
+		<div class="container">
+			<div class="middle">
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+				<p>sdfsdfsdf</p>
+			</div>
+			<div class="left"></div>
+			<div class="right"></div>
+		</div>
+
+	</body>
+
+</html>
