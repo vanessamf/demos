@@ -590,6 +590,7 @@
             <div class="overlay"></div>
         </div>
     </body>
+    
     <script src="javascript/jquery-2.1.1.min.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
     <script src="javascript/jquery.fly.min.js"></script>
@@ -665,30 +666,37 @@
                     return false;
                 }
             });
+            
             //右侧一级菜单滚动
             function scrollTitle() {
                 //右侧滚动的距离
                 var scrollTop = $("#foods-content")[0].scrollTop;
                 var titleHeight = $(".top-fixed-wrapper").outerHeight();
                 for(var i = 0; i < foodsList.length; i++) {
+                    //当前list距容器顶部距离（固定不变）
                     var offsetTop = foodsList[i].offsetTop;
                     //var offsetTop2=foodsList[i+1].offsetTop;
+                    //下一个list距容器顶部距离（固定不变）
                     var offsetTop2 = foodsList[i].offsetTop + foodsList.eq(i).outerHeight();
                     if(scrollTop >= offsetTop - 1 && scrollTop < offsetTop2 - titleHeight) {
+                        //滚动的距离在当前list到下一个list的标题与固定标题相遇之间时，标题固定，显示当前标题内容
                         $(".top-fixed-wrapper").css("top", "0");
                         $(".fixed-title").text(foodsList.eq(i).find(".food-title").text());
                         break;
                     } else if(scrollTop >= offsetTop2 - titleHeight && scrollTop < offsetTop2 - 1) {
+                        //滚动的距离在下一个list的标题与固定标题相遇到下一个list滑到顶部之间时，固定标题往上移动，显示当前标题内容
                         $(".top-fixed-wrapper").css("top", -(titleHeight + scrollTop - offsetTop2) + "px");
                         $(".fixed-title").text(foodsList.eq(i).find(".food-title").text());
                         break;
                     } else if(scrollTop == offsetTop2 - 1) {
+                        //滚动的距离等于下一个list的offset时，标题固定，显示下一个标题内容
                         $(".top-fixed-wrapper").css("top", "0");
                         $(".fixed-title").text(foodsList.eq(i + 1).find(".food-title").text());
                         break;
                     }
                 }
             }
+            
             // 左侧根据右侧当前滚动到的类别添加active
             function scrollactive() {
                 //右侧滚动的距离
@@ -723,6 +731,7 @@
                 $(".menu-container .overlay").hide();
                 $(".shopcart-container").removeClass("active");
             })
+            
             //加
             $(".cart-add").on("click", function() {
                 $(this).parent().find(".cart-decrease").css({
@@ -731,34 +740,43 @@
                 $(this).parent().find(".cart-count").css({
                     "display": "inline-block"
                 });
+                //数量增加
                 var tmp = parseInt($(this).parent().find(".cart-count").text());
                 tmp += 1;
                 $(this).parent().find(".cart-count").text(tmp);
+                //计算总数
                 var sum = 0;
                 for(var i = 0; i < $(".cart-count").length; i++) {
                     sum = sum + parseInt($(".cart-count").eq(i).text());
                 }
+                //购物车显示总数
                 $(".shopping-wrapper .num").addClass("active");
                 $(".shopping-wrapper .num").text(sum);
             })
             //减
             $(".cart-decrease").on("click", function() {
+                //数量减少
                 var tmp = parseInt($(this).parent().find(".cart-count").text());
                 tmp -= 1;
                 $(this).parent().find(".cart-count").text(tmp);
+                //计算总数
                 var sum = 0;
                 for(var i = 0; i < $(".cart-count").length; i++) {
                     sum = sum + parseInt($(".cart-count").eq(i).text());
                 }
+                //购物车显示总数
                 $(".shopping-wrapper .num").text(sum);
+                //少于0时隐藏减号
                 if($(this).parent().find(".cart-count").text() == 0) {
                     $(this).parent().find(".cart-decrease").hide();
                     $(this).parent().find(".cart-count").hide();
                 }
+                //少于0时修改购物车颜色
                 if($(".shopping-wrapper .num").text() == 0) {
                     $(".shopping-wrapper .num").removeClass("active");
                 }
             })
+            
             //添加菜品动画效果
             $(".food-item .cart-add").on("click", addProduct);
 
@@ -771,14 +789,14 @@
                 var flyer = $("<lable class='pointer'></label>");
                 flyer.fly({
                     start: {
-                        left: x,
-                        top: y
+                        left: x,//开始位置
+                        top: y//开始位置
                     },
                     end: {
-                        left: offset.left,
-                        top: offset.top,
-                        width: 10,
-                        height: 10
+                        left: offset.left,//结束位置
+                        top: offset.top,//结束位置
+                        width: 10,//结束时宽度
+                        height: 10//结束时高度
                     },
                     onEnd: function() { //结束回调
                         this.destroy(); //移除dom
