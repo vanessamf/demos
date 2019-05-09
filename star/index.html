@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>五星评分</title>
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+
+    <body>
+        <div class="star-wrapper">
+            <div class="star" data-num="4.6">
+            </div>
+        </div>
+        <div class="star-wrapper">
+            <div class="star" data-num="3.3">
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        function itemStar(star, num) {
+            var result = [];
+            var LENGTH = 5;
+            var CLS_ON = 'on';
+            var CLS_HALF = 'half';
+            var CLS_OFF = 'off';
+            
+            //Math.floor向下取整
+            var score = Math.floor(num * 2) / 2;
+            //判断是否为小数
+            var hashDecimal = score % 1 !== 0;
+            //向下取整数部分
+            var integer = Math.floor(score);
+            //五角星置空
+            star.empty();
+            for(var i = 0; i < integer; i++) {
+                //整数部分显示整星
+                result.push(CLS_ON);
+                star.append('<i class="star-item ' + CLS_ON + '"></i>');
+            }
+            if(hashDecimal) {
+                //小数部分显示半星
+                result.push(CLS_HALF);
+                star.append('<i class="star-item ' + CLS_HALF + '"></i>');
+            }
+            while(result.length < LENGTH) {
+                //不够五星的部分用默认灰色星星补齐
+                result.push(CLS_OFF);
+                star.append('<i class="star-item ' + CLS_OFF + '"></i>');
+            }
+            //return result;
+        }
+        var starItems = $(".star");
+        for(var i = 0; i < starItems.length; i++) {
+            var dataNum = starItems.eq(i).attr("data-num");
+            itemStar(starItems.eq(i), dataNum);
+        }
+    </script>
+
+</html>

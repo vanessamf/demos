@@ -1,0 +1,25 @@
+/* 五星评分 */
+    
+.rating-wrapper{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rating-wrapper span{
+    font-size: 30px;
+    /* color:#ffa043; */
+}
+.star-wrapper {
+    text-align: center;
+}   
+.star-wrapper li{
+    display: inline-block;
+    color:#b5b5b5;
+    cursor: pointer;
+    font-size: 30px;
+    margin-left:10px;
+}
+.star-wrapper li.active{
+    color:#ffa043;
+}

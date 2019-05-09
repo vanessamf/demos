@@ -1,0 +1,47 @@
+/* 五角星评分 */
+.star-wrapper{
+    padding:60px;
+}
+.star {
+    font-size: 0;
+}
+
+.star .star-item {
+    display: inline-block;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-size: 30px 30px;
+}
+
+.star .star-item:last-child {
+    margin-right: 0;
+}
+
+.star .star-item.on {
+    background-image: url("../images/star_on@2x.png");
+}
+
+.star .star-item.half {
+    background-image: url("../images/star_half@2x.png");
+}
+
+.star .star-item.off {
+    background-image: url("../images/star_off@2x.png");
+}
+
+@media (-webkit-min-device-pixel-ratio:3),
+(min-device-pixel-ratio:3) {
+    .star .star-item.on {
+        background-image: url("../images/star_on@3x.png");
+    }
+
+    .star .star-item.half {
+        background-image: url("../images/star_half@3x.png");
+    }
+
+    .star .star-item.off {
+        background-image: url("../images/star_off@3x.png");
+    }
+}
